@@ -6,10 +6,16 @@ terraform {
       version = ">= 2.40"
     }
   }
+
+  backend "azurerm" {
+    resource_group_name  = "NestedRG"
+    storage_account_name = "nestedstorageaccount"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
-  subscription_id = "a9a0e11a-2ce3-46bd-b791-0b10c084a1e4"
   features {}
 }
 
