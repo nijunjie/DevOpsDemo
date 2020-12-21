@@ -19,6 +19,11 @@ provider "azurerm" {
   features {}
 }
 
+variable "imagebuild" {
+  type = string
+  description = "Latest image build"
+}
+
 # Create resource group
 resource "azurerm_resource_group" "default" {
   name     = "NestedTest"
@@ -37,7 +42,7 @@ resource "azurerm_container_group" "default" {
 
   container {
     name   = "weatherapi"
-    image  = "nijunjie/weatherapi"
+    image  = "nijunjie/weatherapi:${var.imagebuild}"
     cpu    = "1"
     memory = "1"
 
